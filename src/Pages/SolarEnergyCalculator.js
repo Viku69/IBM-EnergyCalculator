@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 
+
+
 const SolarEnergyCalculator = () => {
 
     const [postalCode, setPostalCode] = useState('');
@@ -12,6 +14,7 @@ const SolarEnergyCalculator = () => {
     const [tilt, setTilt] = useState('');
     const [azimuth, setAzimuth] = useState('');
     const [energyOutput, setEnergyOutput] = useState(null);
+    const apiKey = process.env.REACT_APP_API_KEYSolar
 
 
     const handleSubmit = async (event) => {
@@ -19,7 +22,7 @@ const SolarEnergyCalculator = () => {
         try {
             const response = await axios.get(`https://developer.nrel.gov/api/pvwatts/v8.json`, {
                 params: {
-                    api_key: '37GGUqYyc7ip11YenDSUKIZobYc9NU3hiDzzeRpX', // Replace with your actual API key
+                    api_key: apiKey, // Replace with your actual API key
                     system_capacity: systemCapacity,
                     module_type: moduleType,
                     losses: losses,
